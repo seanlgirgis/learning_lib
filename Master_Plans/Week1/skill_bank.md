@@ -68,3 +68,33 @@
 *   **Capacity Planning** is just **Predictive Analytics**.
 *   **APM Tools** are **Data Ingestion Engines**.
 *   **Root Cause Analysis** is **Data Debugging**.
+
+
+# Skills & Duties Bank – Sean Luka Girgis
+## Overview
+Centralized inventory of 25+ years experience, translated to modern Data Engineering, ML, and Performance terms.  
+Pull from this for resumes, CV, LinkedIn, website updates.  
+Columns:  
+- **Original Context** (job/company/dates + original bullet)  
+- **DE/ML Mapping** (modern translation)  
+- **Key Skills/Tools**  
+- **Quantifiable Impact** (if available)  
+- **Suggested Resume Bullet** (targeted for Senior Data Engineer / ML Engineer roles)
+
+## Citi Financial – Performance & Capacity Consultant (Nov 2017 – Dec 2025)
+| Original Context | DE/ML Mapping | Key Skills/Tools | Quantifiable Impact | Suggested Resume Bullet |
+|------------------|---------------|------------------|---------------------|-------------------------|
+| Data Mining and Creating Capacity reports | Telemetry Data Pipeline + ETL for Capacity Metrics | Python, pandas, ETL, data mining, CA APM, BMC TrueSight | Monthly executive reports | Engineered Python/pandas ETL pipelines to extract, transform, and mine capacity metrics from enterprise APM tools (CA APM 10.5, BMC TrueSight), enabling automated monthly capacity reporting and trend analysis |
+| Built automated data pipelines using Python and pandas... | Automated Data Ingestion & Transformation Pipeline | Python, pandas, ETL automation, data integration | Reduced manual effort by X% | Developed automated Python/pandas pipelines consolidating monitoring data from multiple sources into a unified analytics database, improving data accuracy and stakeholder visibility |
+| Developed machine learning forecasting models using Python and scikit-learn | Time-Series Forecasting Pipeline + ML Feature Engineering | scikit-learn, time-series, ML pipelines, Prophet/XGBoost/LSTM (from Horizon) | Improved forecast accuracy | Implemented scikit-learn (and advanced models like Prophet/XGBoost) time-series forecasting for 3-6 month capacity predictions across 10,000+ servers, reducing emergency provisioning incidents |
+| Managed CA APM environments... On Boarding of new application... Creating and Maintaining Data Mining Scripts | Monitoring Data Pipeline Management + Custom ETL Scripts | APM tools (CA APM), scripting (Python/Perl), onboarding pipelines | Supported 6000+ agents in prior roles | Administered high-volume APM telemetry pipelines, onboarded new applications, and built custom Python data mining scripts for scalable capacity analytics |
+
+## HorizonScale Project (Flagship ML Showcase – Ongoing)
+| Original Context | DE/ML Mapping | Key Skills/Tools | Quantifiable Impact | Suggested Resume Bullet |
+|------------------|---------------|------------------|---------------------|-------------------------|
+| HorizonScale AI predictive utilization pipeline | End-to-End Scalable ML Forecasting Pipeline | Python, Prophet, XGBoost, LSTM, multiprocessing (Turbo mode), Streamlit, synthetic data, Parquet | 90% reduction in forecasting cycles via parallel processing | Architected HorizonScale: high-performance time-series forecasting system using automated model selection (Prophet/XGBoost/LSTM), multiprocessing for 10x throughput, and Streamlit dashboard for 6-month capacity outlooks on 2,000+ nodes |
+
+## Next Roles to Add (Prioritize This Week)
+- G6 Hospitality (DynaTrace monitoring + AWS migration → telemetry ingestion + cloud ETL)
+- Sabre (MySQL to Oracle conversion + C++/OCCI → batch data migration + optimization)
+- Sprint / Corpus Inc. (C++/Pro*C batch processing + performance enhancements → efficient ETL pipelines)
