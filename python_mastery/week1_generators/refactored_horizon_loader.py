@@ -90,17 +90,68 @@ def process_metrics_pipeline(loader):
     print(f"Final Memory: {get_memory_usage():.2f} MB")
     print(f"VERDICT: Memory stayed low because we streamed the data!")
 
+def lazy_chunk_loader(file_path, chunk_size=1000):
+    """
+    OPTIMIZED GENERATOR: Yields a LIST of rows (Chunk processing).
+    Reduces function call overhead and is better for bulk DB inserts.
+    """
+    with open(file_path, 'r') as f:
+        reader = csv.DictReader(f)
+        chunk = []
+        for row in reader:
+            # Transform
+            row['cpu_usage'] = float(row['cpu_usage'])
+            row['memory_usage'] = float(row['memory_usage'])
+            
+            chunk.append(row)
+            
+            # Yield when full
+            if len(chunk) >= chunk_size:
+                yield chunk
+                chunk = [] # Reset
+        
+        # Yield remainder
+        if chunk:
+            yield chunk
+
+def process_chunk_pipeline(loader):
+    """
+    Consumes lists of rows instead of single rows.
+    """
+    print(f"Starting CHUNK pipeline. Initial Memory: {get_memory_usage():.2f} MB")
+    count = 0
+    max_cpu = 0.0
+    start_time = time.time()
+    
+    for chunk in loader:
+        # Loop inside the chunk implies normal list iteration (fast)
+        for record in chunk:
+            count += 1
+            if record['cpu_usage'] > max_cpu:
+                max_cpu = record['cpu_usage']
+                
+    end_time = time.time()
+    print("-" * 30)
+    print(f"CHUNK PIPELINE COMPLETE")
+    print(f"Total Rows: {count}")
+    print(f"Max CPU Found: {max_cpu:.2f}")
+    print(f"Time Taken: {end_time - start_time:.2f} seconds")
+    print(f"Final Memory: {get_memory_usage():.2f} MB")
+
 if __name__ == "__main__":
     # 1. Setup Data
     if not os.path.exists(MOCK_FILE):
         generate_mock_data(MOCK_FILE, TOTAL_ROWS)
         
-    # 2. Initialize Generator
-    # Note: This function call is nearly instant. It returns an iterator, doesn't process data yet.
-    my_generator = lazy_metric_loader(MOCK_FILE)
+    print("=== TEST 1: Row-by-Row Generator ===")
+    gen_row = lazy_metric_loader(MOCK_FILE)
+    print (f"Type: {type(gen_row)}")
+    process_metrics_pipeline(gen_row)
     
-    # 3. Run Pipeline
-    process_metrics_pipeline(my_generator)
+    print("\n=== TEST 2: Chunked Generator (Batch=1000) ===")
+    gen_chunk = lazy_chunk_loader(MOCK_FILE, chunk_size=1000)
+    print (f"Type: {type(gen_chunk)}")
+    process_chunk_pipeline(gen_chunk)
     
     # Cleanup
     if os.path.exists(MOCK_FILE):
